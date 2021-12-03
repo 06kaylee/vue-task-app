@@ -5,9 +5,13 @@
             <input type="text" v-model="text" name="text" placeholder="Add Task">
         </div>
         <div class="form-control">
-            <label>Day and Time</label>
-            <input type="text" v-model="day" name="day" placeholder="Add Day and Time">
+            <label>Day</label>
+            <input type="date" v-model="day" name="day" placeholder="Add Day">
         </div>
+		<div class="form-control">
+			<label>Time</label>
+			<input type="time" v-model="time" name ="time" placeholder="Add Time">
+		</div>
         <div class="form-control">
             <label>Set Reminder</label>
             <input type="checkbox" v-model="reminder" name="reminder">
@@ -23,6 +27,7 @@ export default {
         return {
             text: '',
             day: '',
+			time: '',
             reminder: false
         }
     },
@@ -39,6 +44,7 @@ export default {
                 id: Math.floor(Math.random() * 100000),
                 text: this.text,
                 day: this.day,
+				time: this.time,
                 reminder: this.reminder
             };
 
@@ -46,6 +52,7 @@ export default {
 
             this.text= "";
             this.day= "";
+			this.time="";
             this.reminder= false;
         }
     }
