@@ -1,7 +1,7 @@
 <template>
     <div @dblclick="$emit('toggle-reminder', task.id)" :class="[task.reminder ? 'reminder' : '', 'task']">
         <h3>{{ task.text }}
-          <button @click="$emit('delete-task', task.id)">X</button>
+          <font-awesome-icon id="delete-icon" @click="$emit('delete-task', task.id)" :icon="['fas', 'times']" />
         </h3>
         <p>{{ task.day }}</p>
     </div>
@@ -32,5 +32,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+#delete-icon {
+  color: red;
 }
 </style>

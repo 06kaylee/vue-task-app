@@ -11,7 +11,8 @@ export default {
     },
     methods: {
         onClick() {
-            console.log("Clicked");
+            // when the button is clicked, it emits the click event up to the parent component 
+            this.$emit('btn-click');
         }
     }
 }

@@ -12,10 +12,13 @@
 			<label>Time</label>
 			<input type="time" v-model="time" name ="time" placeholder="Add Time">
 		</div>
-        <div class="form-control">
-            <label>Set Reminder</label>
-            <input type="checkbox" v-model="reminder" name="reminder">
-        </div>
+        <!-- <div class="form-control">
+            <label id="reminder-label">Set Reminder</label>
+            <input id="reminder-box" type="checkbox" v-model="reminder" name="reminder">
+        </div> -->
+        <label id="reminder-label">Set Reminder</label>
+        <input id="reminder-box" type="checkbox" v-model="reminder" name="reminder">
+
         <input type="submit" value="Save Task" class="btn btn-block">
     </form>
 </template>
@@ -87,5 +90,14 @@ export default {
 .form-control-check input {
   flex: 2;
   height: 20px;
+}
+#reminder-label {
+    display: inline-block;
+}
+#reminder-box {
+    display: inline-block;
+    max-width: 100px;
+    margin-left: 1em;
+    margin-bottom: 1em;
 }
 </style>
