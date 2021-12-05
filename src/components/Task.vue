@@ -3,7 +3,7 @@
         <h3>{{ task.text }}
           <font-awesome-icon id="delete-icon" @click="$emit('delete-task', task.id)" :icon="['fas', 'times']" />
         </h3>
-        <p>{{ task.day }}</p>
+        <p>{{ task.day }} at {{ task.time }}</p>
     </div>
 </template>
 

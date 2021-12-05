@@ -1,22 +1,22 @@
 <template>
     <form @submit="onSubmit" class="add-form">
         <div class="form-control">
-            <label>Task</label>
+            <label for="text">Task</label>
             <input type="text" v-model="text" name="text" placeholder="Add Task">
         </div>
         <div class="form-control">
-            <label>Day</label>
+            <label for="day">Day</label>
             <input type="date" v-model="day" name="day" placeholder="Add Day">
         </div>
 		<div class="form-control">
-			<label>Time</label>
+			<label for="time">Time</label>
 			<input type="time" v-model="time" name ="time" placeholder="Add Time">
 		</div>
         <!-- <div class="form-control">
             <label id="reminder-label">Set Reminder</label>
             <input id="reminder-box" type="checkbox" v-model="reminder" name="reminder">
         </div> -->
-        <label id="reminder-label">Set Reminder</label>
+        <label id="reminder-label" for="reminder">Set Reminder</label>
         <input id="reminder-box" type="checkbox" v-model="reminder" name="reminder">
 
         <input type="submit" value="Save Task" class="btn btn-block">
@@ -43,11 +43,21 @@ export default {
                 return;
             }
 
+            const timeWithFormat = this.onTimeChange(this.time);
+            const newDate = new Date(this.day);
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+            const dateWithFormat = newDate.toLocaleDateString('en-US', options);
+
             const newTask = {
                 id: Math.floor(Math.random() * 100000),
                 text: this.text,
-                day: this.day,
-				time: this.time,
+                day: dateWithFormat,
+				time: timeWithFormat,
                 reminder: this.reminder
             };
 
@@ -57,6 +67,27 @@ export default {
             this.day= "";
 			this.time="";
             this.reminder= false;
+        },
+        onTimeChange(time) {
+            let timeSplit = time.split(':'),
+              hours,
+              minutes,
+              meridian;
+            hours = timeSplit[0];
+            minutes = timeSplit[1];
+            if (hours > 12) {
+              meridian = 'PM';
+              hours -= 12;
+            } else if (hours < 12) {
+              meridian = 'AM';
+              if (hours == 0) {
+                hours = 12;
+              }
+            } else {
+              meridian = 'PM';
+            }
+            const newTime = `${hours}:${minutes} ${meridian}`;
+            return newTime;
         }
     }
 }
