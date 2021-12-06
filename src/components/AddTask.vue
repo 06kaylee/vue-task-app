@@ -54,10 +54,9 @@ export default {
             const dateWithFormat = newDate.toLocaleDateString('en-US', options);
 
             const newTask = {
-                id: Math.floor(Math.random() * 100000),
                 text: this.text,
                 day: dateWithFormat,
-				time: timeWithFormat,
+                time: timeWithFormat,
                 reminder: this.reminder
             };
 
