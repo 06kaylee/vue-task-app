@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     async addTask(taskData) {
-      const res = await fetch('api/tasks', {
+      const res = await fetch('https://task-app-api3322.herokuapp.com/tasks', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
@@ -43,7 +43,7 @@ export default {
       this.tasks = [...this.tasks, newTask];
     },
     async deleteTask(id) {
-      const res = await fetch(`/api/tasks/${id}`, {
+      const res = await fetch(`https://task-app-api3322.herokuapp.com/tasks/${id}`, {
         method: 'DELETE'
       })
 
@@ -57,7 +57,7 @@ export default {
     async toggleReminder(id) {
       const task = await this.fetchTask(id);
       const updatedTask = {...task, reminder: !task.reminder};
-      const res = await fetch(`api/tasks/${id}`, {
+      const res = await fetch(`https://task-app-api3322.herokuapp.com/tasks/${id}`, {
         method: 'PUT',
         headers: {
           'Content-type': 'application/json'
@@ -71,12 +71,12 @@ export default {
       this.showAddTask = !this.showAddTask;
     },
     async fetchTasks() {
-      const res = await fetch('api/tasks');
+      const res = await fetch('https://task-app-api3322.herokuapp.com/tasks');
       const data = await res.json()
       return data;
     },
     async fetchTask(id) {
-      const res = await fetch(`api/tasks/${id}`);
+      const res = await fetch(`https://task-app-api3322.herokuapp.com/tasks/${id}`);
       const data = await res.json()
       return data;
     }
